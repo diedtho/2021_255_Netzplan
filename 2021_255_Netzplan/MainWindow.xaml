@@ -1,0 +1,49 @@
+﻿<Window x:Class="_2021_255_Netzplan.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:_2021_255_Netzplan"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="15*"/>
+        </Grid.RowDefinitions>
+        
+    <DockPanel>
+        <Menu DockPanel.Dock="Top">
+                <MenuItem Header="_Datei">
+                    <MenuItem Header="_Neu" />
+                <MenuItem Header="_Öffene" />
+                <MenuItem Header="_Speichern" Click="mnuitmSpeichern"/>
+                <Separator />
+                <MenuItem Header="_Exit" Click="mnuitmExit" />
+            </MenuItem>
+        </Menu>
+        <TextBox AcceptsReturn="True" />
+    </DockPanel>
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="5*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+            <ListView x:Name="lvVorgaenge">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Vorgang" Width="120" DisplayMemberBinding="{Binding vorgangBuchstb}" />
+                        <GridViewColumn Header="Beschreibung" Width="220" DisplayMemberBinding="{Binding beschreibung}" />
+                        <GridViewColumn Header="Dauer (in Tagen)" Width="150" DisplayMemberBinding="{Binding dauerInTagen}" />
+                        <GridViewColumn Header="Vorgänger" Width="180" DisplayMemberBinding="{Binding vorgaenger}" />
+                    </GridView>
+                </ListView.View>
+            </ListView>
+            <Button Grid.Row="1" x:Name="btnVorgangHinzufuegen" Click="btnClickVorgangHinzufuegen" Content="Vorgang hinzufügen"/>
+
+        </Grid>
+        
+    </Grid>
+
+</Window>
