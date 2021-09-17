@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:_2021_255_Netzplan"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="950" Loaded="Window_Loaded">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"/>
@@ -36,7 +36,11 @@
                         <GridViewColumn Header="Vorgang" Width="120" DisplayMemberBinding="{Binding vorgangBuchstb}" />
                         <GridViewColumn Header="Beschreibung" Width="220" DisplayMemberBinding="{Binding beschreibung}" />
                         <GridViewColumn Header="Dauer (in Tagen)" Width="150" DisplayMemberBinding="{Binding dauerInTagen}" />
-                        <GridViewColumn Header="Vorgänger" Width="180" DisplayMemberBinding="{Binding vorgaenger}" />
+                        <GridViewColumn x:Name="lvColVorg" Header="Vorgänger" Width="180" DisplayMemberBinding="{Binding strVorg}" />
+                        <GridViewColumn Header="FAZ" Width="auto" DisplayMemberBinding="{Binding faz}" />
+                        <GridViewColumn Header="FEZ" Width="auto" DisplayMemberBinding="{Binding fez}" />
+                        <GridViewColumn Header="SAZ" Width="auto" DisplayMemberBinding="{Binding saz}" />
+                        <GridViewColumn Header="SEZ" Width="auto" DisplayMemberBinding="{Binding sez}" />
                     </GridView>
                 </ListView.View>
             </ListView>

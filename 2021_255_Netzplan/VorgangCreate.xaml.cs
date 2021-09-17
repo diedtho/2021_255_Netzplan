@@ -28,10 +28,8 @@ namespace _2021_255_Netzplan
 
 
         void btnClickVorgangSpeichern(object sender, RoutedEventArgs e)
-        {           
-
+        {         
             Close();
-
         }
     }
 }

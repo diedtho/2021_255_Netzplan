@@ -8,21 +8,28 @@ namespace _2021_255_Netzplan
 {
     public class Vorgang
     {
-        public string vorgangBuchstb { get; set; }
+        public char vorgangBuchstb { get; set; }
         public string beschreibung { get; set; }
-        public string dauerInTagen { get; set; }
-        public string vorgaenger { get; set; }
+        public int dauerInTagen { get; set; }
+        public List<char> vorgaenger { get; set; }
+        public string strVorg { get; set; }
+        public int faz { get; set; }
+        public int fez { get; set; }
+        public int saz { get; set; }
+        public int sez { get; set; }
+        public int gp { set; get; }
+        public int fp { set; get; }
 
         public Vorgang()
         {
 
         }
-        public Vorgang(string vorg, string beschreib, string dauerTage, string vorgaeng)
+        public Vorgang(char vorg, string beschreib, int dauerTage, List<char> vorgaengr)
         {
             vorgangBuchstb = vorg;
             beschreibung = beschreib;
             dauerInTagen = dauerTage;
-            vorgaenger = vorgaeng;
+            vorgaenger = vorgaengr;
         }
     }
 

@@ -1,0 +1,10 @@
+vorgangBuchstb,beschreibung,dauerInTagen,strVorg,faz,fez,saz,sez,gp,fp,A,Elektrische Leitungen verlegen,3,,0,3,0,3,0,0
+B,Maschinenfundamente erstellen,4,"A,",3,7,3,7,0,0
+C,Stromanschlusskasten aufstellen,3,"A,",3,6,21,24,0,0
+D,Materialzuführungsbänder aufbauen,18,"B,",7,25,10,28,0,0
+E,Aufstellen der Maschinen,21,"B,",7,28,7,28,0,0
+F,Beseitigung des Bauschutts,21,"C,",6,27,24,45,0,0
+G,Elektrische Anschlüsse anbringen,6,"D,E,",28,34,28,34,0,0
+H,Reinigung der Maschinenhalle,7,"F,",27,34,45,52,0,0
+I,Probelauf der Maschinen,18,"G,",34,52,34,52,0,0
+J,Einweihung durch den Vorstand,1,"H,I,",52,53,52,53,0,0
