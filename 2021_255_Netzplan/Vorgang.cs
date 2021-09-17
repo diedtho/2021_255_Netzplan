@@ -13,6 +13,8 @@ namespace _2021_255_Netzplan
         public int dauerInTagen { get; set; }
         public List<char> vorgaenger { get; set; }
         public string strVorg { get; set; }
+        public List<char> nachfolger { get; set; }
+        public string strNachf { get; set; }
         public int faz { get; set; }
         public int fez { get; set; }
         public int saz { get; set; }
@@ -24,12 +26,13 @@ namespace _2021_255_Netzplan
         {
 
         }
-        public Vorgang(char vorg, string beschreib, int dauerTage, List<char> vorgaengr)
+        public Vorgang(char vorg, string beschreib, int dauerTage, List<char> vorgaengr, List<char> nachfolgr)
         {
             vorgangBuchstb = vorg;
             beschreibung = beschreib;
             dauerInTagen = dauerTage;
             vorgaenger = vorgaengr;
+            nachfolger = nachfolgr;
         }
     }
 

@@ -34,7 +34,8 @@ namespace _2021_255_Netzplan
                 vorgangBuchstb = "B"[0],
                 beschreibung = "Maschinenfundamente erstellen",
                 dauerInTagen = 4,
-                vorgaenger = new List<char> { "A"[0] }
+                vorgaenger = new List<char> { "A"[0] },
+                nachfolger = new List<char>()
             });
 
             listeVorgaenge.Add(new Vorgang()
@@ -42,15 +43,17 @@ namespace _2021_255_Netzplan
                 vorgangBuchstb = "C"[0],
                 beschreibung = "Stromanschlusskasten aufstellen",
                 dauerInTagen = 3,
-                vorgaenger = new List<char> { "A"[0] }
-            });
+                vorgaenger = new List<char> { "A"[0] },
+                nachfolger = new List<char>()
+            }); ;
 
             listeVorgaenge.Add(new Vorgang()
             {
                 vorgangBuchstb = "D"[0],
                 beschreibung = "Materialzuführungsbänder aufbauen",
                 dauerInTagen = 18,
-                vorgaenger = new List<char> { "B"[0] }
+                vorgaenger = new List<char> { "B"[0] },
+                nachfolger = new List<char>()
             });
 
             listeVorgaenge.Add(new Vorgang()
@@ -58,7 +61,8 @@ namespace _2021_255_Netzplan
                 vorgangBuchstb = "E"[0],
                 beschreibung = "Aufstellen der Maschinen",
                 dauerInTagen = 21,
-                vorgaenger = new List<char> { "B"[0] }
+                vorgaenger = new List<char> { "B"[0] },
+                nachfolger = new List<char>()
             });
 
             listeVorgaenge.Add(new Vorgang()
@@ -66,7 +70,8 @@ namespace _2021_255_Netzplan
                 vorgangBuchstb = "F"[0],
                 beschreibung = "Beseitigung des Bauschutts",
                 dauerInTagen = 21,
-                vorgaenger = new List<char> { "C"[0] }
+                vorgaenger = new List<char> { "C"[0] },
+                nachfolger = new List<char>()
             });
 
             listeVorgaenge.Add(new Vorgang()
@@ -74,7 +79,8 @@ namespace _2021_255_Netzplan
                 vorgangBuchstb = "G"[0],
                 beschreibung = "Elektrische Anschlüsse anbringen",
                 dauerInTagen = 6,
-                vorgaenger = new List<char> { "D"[0], "E"[0] }
+                vorgaenger = new List<char> { "D"[0], "E"[0] },
+                nachfolger = new List<char>()
             });
 
             listeVorgaenge.Add(new Vorgang()
@@ -82,7 +88,8 @@ namespace _2021_255_Netzplan
                 vorgangBuchstb = "H"[0],
                 beschreibung = "Reinigung der Maschinenhalle",
                 dauerInTagen = 7,
-                vorgaenger = new List<char> { "F"[0] }
+                vorgaenger = new List<char> { "F"[0] },
+                nachfolger = new List<char>()
             });
 
             listeVorgaenge.Add(new Vorgang()
@@ -90,7 +97,8 @@ namespace _2021_255_Netzplan
                 vorgangBuchstb = "I"[0],
                 beschreibung = "Probelauf der Maschinen",
                 dauerInTagen = 18,
-                vorgaenger = new List<char> { "G"[0] }
+                vorgaenger = new List<char> { "G"[0] },
+                nachfolger = new List<char>()
             });
 
             listeVorgaenge.Add(new Vorgang()
@@ -98,7 +106,8 @@ namespace _2021_255_Netzplan
                 vorgangBuchstb = "J"[0],
                 beschreibung = "Einweihung durch den Vorstand",
                 dauerInTagen = 1,
-                vorgaenger = new List<char> { "H"[0], "I"[0] }
+                vorgaenger = new List<char> { "H"[0], "I"[0] },
+                nachfolger = new List<char>()
             });
 
         }
@@ -112,7 +121,7 @@ namespace _2021_255_Netzplan
         {
             VorgangCreate secondWindow = new();
             secondWindow.ShowDialog();
-
+            List<char> listeNachfolger = new List<char>();
             List<char> listeVorgaenger = new List<char>();
             if (secondWindow.tbVorgaenger1.Text != "") { listeVorgaenger.Add(secondWindow.tbVorgaenger1.Text[0]); }
             if (secondWindow.tbVorgaenger2.Text != "") { listeVorgaenger.Add(secondWindow.tbVorgaenger2.Text[0]); }
@@ -121,8 +130,9 @@ namespace _2021_255_Netzplan
             if (secondWindow.tbVorgaenger5.Text != "") { listeVorgaenger.Add(secondWindow.tbVorgaenger5.Text[0]); }
             if (secondWindow.tbVorgaenger6.Text != "") { listeVorgaenger.Add(secondWindow.tbVorgaenger6.Text[0]); }
 
-            listeVorgaenge.Add(new Vorgang(secondWindow.tbVorgang.Text[0], secondWindow.tbBeschreibung.Text,
-                int.Parse(secondWindow.tbDauerInTagen.Text), listeVorgaenger.ToList()));
+            Vorgang vorgNeu = new Vorgang(secondWindow.tbVorgang.Text[0], secondWindow.tbBeschreibung.Text,
+                int.Parse(secondWindow.tbDauerInTagen.Text), listeVorgaenger.ToList(), null);
+            listeVorgaenge.Add(vorgNeu);
 
             listeBerechnen();
             showListViewVorgaenge();
@@ -145,6 +155,19 @@ namespace _2021_255_Netzplan
                 listeVorgaenge[a].strVorg = strVorg;
             }
 
+            for (int a = 0; a < listeVorgaenge.Count; a++)
+            {
+                string strNachf = "";
+                if (listeVorgaenge[a].nachfolger != null)
+                {
+                    foreach (char nachfolger in listeVorgaenge[a].nachfolger)
+                    {
+                        strNachf += nachfolger + ",";
+                    }
+                    listeVorgaenge[a].strNachf = strNachf;
+                }
+            }
+
             //MessageBox.Show(listeVorgaenge.Last().strVorg, "Letzter Vorgang StringVorgänger", MessageBoxButton.OK);
 
             lvVorgaenge.ItemsSource = null;
@@ -164,9 +187,9 @@ namespace _2021_255_Netzplan
 
             using (var writer = new StreamWriter(@"C:\Users\Thorsten\source\repos\2021_255_Netzplan\2021_255_Netzplan\netzplan.csv"))
             using (var csv = new CsvWriter(writer, CultureInfo.InvariantCulture))
-            {   
+            {
                 csv.WriteHeader<Vorgang>();
-                csv.WriteRecords(data);               
+                csv.WriteRecords(data);
             }
 
         }
@@ -196,6 +219,13 @@ namespace _2021_255_Netzplan
                             listeVorgaenge[i].faz = fezVorgaenger;
                         }
                         listeVorgaenge[i].fez = listeVorgaenge[i].faz + listeVorgaenge[i].dauerInTagen;
+                        for (int vrgNr = 0; vrgNr < listeVorgaenge.Count; vrgNr++)
+                        {
+                            if (listeVorgaenge[vrgNr].vorgangBuchstb == x && listeVorgaenge[vrgNr].nachfolger != null)
+                            {
+                                listeVorgaenge[vrgNr].nachfolger.Add(listeVorgaenge[i].vorgangBuchstb);
+                            }
+                        }
                     }
                 }
             }
@@ -214,22 +244,31 @@ namespace _2021_255_Netzplan
                 {
                     for (int nr = 0; nr < listeVorgaenge[j].vorgaenger.Count; nr++)
                     {
-                        char x = listeVorgaenge[j].vorgaenger[nr];
+                        char vorgaengerBuchstb = listeVorgaenge[j].vorgaenger[nr];
                         int sazNachfolger = listeVorgaenge[j].saz;
+
 
                         for (int k = 0; k < listeVorgaenge.Count; k++)
                         {
-                            if (listeVorgaenge[k].vorgangBuchstb == x)
+                            if (listeVorgaenge[k].vorgangBuchstb == vorgaengerBuchstb)
                             {
                                 if (listeVorgaenge[k].sez == 0 || listeVorgaenge[k].sez > sazNachfolger)
                                 {
                                     listeVorgaenge[k].sez = sazNachfolger;
                                     listeVorgaenge[k].saz = sazNachfolger - listeVorgaenge[k].dauerInTagen;
+                                    listeVorgaenge[k].gp = listeVorgaenge[k].saz - listeVorgaenge[k].faz;
+                                    if (listeVorgaenge[k].fp == 0 || listeVorgaenge[j].faz - listeVorgaenge[k].fez < listeVorgaenge[k].fp)
+                                    {
+                                        listeVorgaenge[k].fp = listeVorgaenge[j].faz - listeVorgaenge[k].fez;
+                                    }
                                 }
+
                             }
+
                         }
                     }
                 }
+
             }
 
         }
